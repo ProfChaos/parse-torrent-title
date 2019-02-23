@@ -7,6 +7,21 @@ describe("Parsing title", () => {
         expect(parse(releaseName)).to.deep.include({ title: "La famille bélier" });
     });
 
+    it("should return the title without group prefix", () => {
+        const releaseName = "emd-deadpool.2160p.mkv";
+        const parsed = parse(releaseName);
+        expect(parsed).to.deep.include({
+            title: "deadpool",
+        });
+    });
+
+    it("should return the title with dash", () => {
+        const releaseName = "X-Men.2000.1080p.BluRay.DTS.x264-FoRM.mkv";
+        expect(parse(releaseName)).to.deep.include({
+            title: "X-Men",
+        });
+    });
+
     it("should remove dots", () => {
         const releaseName = "La.famille.bélier";
         expect(parse(releaseName)).to.deep.include({ title: "La famille bélier" });

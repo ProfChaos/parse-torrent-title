@@ -37,7 +37,11 @@ function createHandlerFromRegExp(name, regExp, options) {
 
         if (rawMatch) {
             result[name] = options.value || transformer(cleanMatch || rawMatch);
-            return match.index;
+
+            return {
+                matchIndex: match.index,
+                length: result[name].length,
+            };
         }
 
         return null;
@@ -98,15 +102,25 @@ class Parser {
     parse(title) {
         const result = {};
         let endOfTitle = title.length;
+        let startOfTitle = 0;
 
         for (const handler of this.handlers) {
-            const matchIndex = handler({ title, result });
-            if (matchIndex && matchIndex < endOfTitle) {
-                endOfTitle = matchIndex;
+            const match = handler({ title, result });
+            if (match) {
+                const { matchIndex, length } = match;
+
+                // Some movies have the group at the start of the torrent name
+                if (matchIndex === 0) {
+                    startOfTitle = length + 1;
+                } else if (matchIndex && matchIndex < endOfTitle) {
+                    endOfTitle = matchIndex;
+                }
             }
         }
 
-        result.title = cleanTitle(title.substr(0, endOfTitle));
+        result.title = cleanTitle(
+            title.substr(startOfTitle, endOfTitle - startOfTitle)
+        );
 
         return result;
     }

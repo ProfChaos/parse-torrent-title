@@ -74,10 +74,13 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("audio", /AAC(?:[. ]?2[. ]0)?/, { value: "aac" });
 
     // Group
-    parser.addHandler("group", /- ?([^\-. ]+)$/);
+    parser.addHandler("group", /D-Z0N3/i);
+    parser.addHandler("group", /- ?([^\-. ]+)(\.\w+)?$/);
+    parser.addHandler("group", /^(\w+)-/);
 
     // Season
     parser.addHandler("season", /S([0-9]{1,2}) ?E[0-9]{1,2}/i, { type: "integer" });
+    parser.addHandler("season", /S([0-9]{1,2})/i, { type: "integer" });
     parser.addHandler("season", /([0-9]{1,2})x[0-9]{1,2}/, { type: "integer" });
     parser.addHandler("season", /(?:Saison|Season)[. _-]?([0-9]{1,2})/i, { type: "integer" });
 

@@ -7,6 +7,11 @@ describe("Parsing group", () => {
         expect(parse(releaseName)).to.deep.include({ group: "HD2" });
     });
 
+    it("should detect the D-Z0N3 group correctly", () => {
+        const releaseName = "X-Men.Apocalypse.2016.1080p.BluRay.DTS.x264.D-Z0N3.mkv";
+        expect(parse(releaseName)).to.deep.include({ group: "D-Z0N3" });
+    });
+
     it("should detect the HDH group correctly", () => {
         const releaseName = "Gold 2016 1080p BluRay DTS-HD MA 5 1 x264-HDH";
         expect(parse(releaseName)).to.deep.include({ group: "HDH" });
@@ -22,4 +27,3 @@ describe("Parsing group", () => {
         expect(parse(releaseName)).to.not.have.property("group");
     });
 });
-
