@@ -119,4 +119,18 @@ describe("Random releases", () => {
             group: "HTG",
         });
     });
+
+    it("[BlurayDesuYo] Shingeki no Kyojin (Season 3) 38 (BD 1920x1080 10bit FLAC) [619BE7E0].mkv", () => {
+        const releaseName = "[BlurayDesuYo] Shingeki no Kyojin (Season 3) 38 (BD 1920x1080 10bit FLAC) [619BE7E0].mkv";
+        expect(parse(releaseName)).to.deep.equal({
+            title: "Shingeki no Kyojin",
+            audio: "flac",
+            resolution: "1080",
+            container: "mkv",
+            group: "BlurayDesuYo",
+            season: 3,
+            episode: 38,
+            color_depth: "10-bit"
+        });
+    });
 });

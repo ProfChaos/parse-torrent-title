@@ -36,4 +36,9 @@ describe("Parsing title", () => {
         const releaseName = "doctor_who_2005.8x12.death_in_heaven.720p_hdtv_x264-fov";
         expect(parse(releaseName)).to.deep.include({ title: "doctor who" });
     });
+
+    it("anime title", () => {
+        const releaseName = "[HorribleSubs] Boruto - Naruto Next Generations - 85 [720p].mkv";
+        expect(parse(releaseName)).to.deep.include({ title: "Boruto - Naruto Next Generations" });
+    });
 });

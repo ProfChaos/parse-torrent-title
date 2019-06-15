@@ -7,6 +7,11 @@ describe("Parsing group", () => {
         expect(parse(releaseName)).to.deep.include({ group: "HD2" });
     });
 
+    it("should detect the anime groups correctly", () => {
+        const releaseName = "[HorribleSubs] Boruto - Naruto Next Generations - 85 [720p].mkv";
+        expect(parse(releaseName)).to.deep.include({ group: "HorribleSubs" });
+    });
+
     it("should detect the D-Z0N3 group correctly", () => {
         const releaseName = "X-Men.Apocalypse.2016.1080p.BluRay.DTS.x264.D-Z0N3.mkv";
         expect(parse(releaseName)).to.deep.include({ group: "D-Z0N3" });

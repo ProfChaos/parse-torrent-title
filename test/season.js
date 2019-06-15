@@ -26,5 +26,10 @@ describe("Parsing season", () => {
         const releaseName = " Orange Is The New Black Season 5 Episodes 1-10 INCOMPLETE (LEAKED)";
         expect(parse(releaseName)).to.deep.include({ season: 5 });
     });
+
+    it("should detect anime season when written as such", () => {
+        const releaseName = "[BlurayDesuYo] Shingeki no Kyojin (Season 3) 38 (BD 1920x1080 10bit FLAC) [619BE7E0].mkv";
+        expect(parse(releaseName)).to.deep.include({ season: 3 });
+    });
 });
 

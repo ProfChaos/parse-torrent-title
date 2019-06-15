@@ -21,5 +21,10 @@ describe("Parsing resolution", () => {
         const releaseName = "The Smurfs 2 2013 COMPLETE FULL BLURAY UHD (4K) - IPT EXCLUSIVE";
         expect(parse(releaseName)).to.deep.include({ resolution: "4k" });
     });
+
+    it("should detect the WidthxHeight resolution correctly", () => {
+        const releaseName = "[BlurayDesuYo] Shingeki no Kyojin (Season 3) 38 (BD 1920x1080 10bit FLAC) [619BE7E0].mkv";
+        expect(parse(releaseName)).to.deep.include({ resolution: "1080" });
+    });
 });
 

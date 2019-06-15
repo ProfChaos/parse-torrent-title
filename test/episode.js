@@ -31,5 +31,9 @@ describe("Parsing episode", () => {
         const releaseName = " Le Monde Incroyable de Gumball - Saison 5 Ep 14 - L'extérieur";
         expect(parse(releaseName)).to.deep.include({ episode: 14 });
     });
+    it("should detect anime episode when written as such", () => {
+        const releaseName = "[BlurayDesuYo] Shingeki no Kyojin (Season 3) 38 (BD 1920x1080 10bit FLAC) [619BE7E0].mkv";
+        expect(parse(releaseName)).to.deep.include({ episode: 38 });
+    });
 });
 

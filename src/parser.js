@@ -27,7 +27,7 @@ function createHandlerFromRegExp(name, regExp, options) {
         transformer = input => input;
     }
 
-    function handler({ title, result }) {
+    function handler({ title, result, taken }) {
         if (result[name] && options.skipIfAlreadyFound) {
             return null;
         }
@@ -36,11 +36,32 @@ function createHandlerFromRegExp(name, regExp, options) {
         const [rawMatch, cleanMatch] = match || [];
 
         if (rawMatch) {
-            result[name] = options.value || transformer(cleanMatch || rawMatch);
+            const value = options.value || transformer(cleanMatch || rawMatch);
+
+            const valueEnd = match.index + value.length - 1;
+            let crashedWithOtherMatch = false;
+            taken.forEach(({ start, end }) => {
+                if (match.index >= start && match.index < end ||
+                    valueEnd >= start && valueEnd < end) {
+                    crashedWithOtherMatch = true;
+                }
+            });
+
+            if (crashedWithOtherMatch) {
+                return null;
+            }
+
+
+            result[name] = value;
+
+            taken.push({
+                start: match.index,
+                end: match.index + value.length
+            });
 
             return {
                 matchIndex: match.index,
-                length: result[name].length,
+                length: value.length,
             };
         }
 
@@ -101,11 +122,12 @@ class Parser {
 
     parse(title) {
         const result = {};
+        const taken = [];
         let endOfTitle = title.length;
         let startOfTitle = 0;
 
         for (const handler of this.handlers) {
-            const match = handler({ title, result });
+            const match = handler({ title, result, taken });
             if (match) {
                 const { matchIndex, length } = match;
 
