@@ -90,6 +90,7 @@ exports.addDefaults = /** @type Parser */ parser => {
         }
     });
 
+    parser.addHandler("producer", /BS11/, { value: "BS" });
 
     // Season
     parser.addHandler("season", /S([0-9]{1,2}) ?E[0-9]{1,2}/i, { type: "integer" });
@@ -99,7 +100,7 @@ exports.addDefaults = /** @type Parser */ parser => {
 
     // Episode
     parser.addHandler("episode", /\(Season \d+\) ([0-9]{1,3})\s/i, { type: "integer" });
-    parser.addHandler("episode", /- ([0-9]{1,3}) \[/i, { type: "integer" });
+    parser.addHandler("episode", /- ([0-9]{1,3}) (\[|\()/i, { type: "integer" });
     parser.addHandler("episode", /S[0-9]{1,2} ?E([0-9]{1,2})/i, { type: "integer" });
     parser.addHandler("episode", /[ée]p(?:isode)?[. _-]?([0-9]{1,3})/i, { type: "integer" });
     parser.addHandler("episode", /[0-9]{1,2}x([0-9]{1,2})/, { type: "integer" });

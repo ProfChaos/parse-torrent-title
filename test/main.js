@@ -127,10 +127,25 @@ describe("Random releases", () => {
             audio: "flac",
             resolution: "1080",
             container: "mkv",
+
             group: "BlurayDesuYo",
             season: 3,
             episode: 38,
             color_depth: "10-bit"
+        });
+    });
+
+    it("[Ohys-Raws] JoJo no Kimyou na Bouken Ougon no Kaze - 33 (BS11 1280x720 x264 AAC).mp4", () => {
+        const releaseName = "[Ohys-Raws] JoJo no Kimyou na Bouken Ougon no Kaze - 33 (BS11 1280x720 x264 AAC).mp4";
+        expect(parse(releaseName)).to.deep.equal({
+            audio: "aac",
+            codec: "x264",
+            container: "mp4",
+            episode: 33,
+            producer: "BS",
+            group: "Ohys-Raws",
+            resolution: "720",
+            title: "JoJo no Kimyou na Bouken Ougon no Kaze"
         });
     });
 });
