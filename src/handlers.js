@@ -8,19 +8,19 @@ exports.addDefaults = /** @type Parser */ parser => {
     parser.addHandler("resolution", /(4k)/i, { type: "lowercase" });
 
     // Extended
-    parser.addHandler("extended", /EXTENDED/, { type: "boolean" });
+    parser.addHandler("extended", /EXTENDED/i, { type: "boolean" });
 
     // Convert
-    parser.addHandler("convert", /CONVERT/, { type: "boolean" });
+    parser.addHandler("convert", /CONVERT/i, { type: "boolean" });
 
     // Hardcoded
-    parser.addHandler("hardcoded", /HC|HARDCODED/, { type: "boolean" });
+    parser.addHandler("hardcoded", /HC|HARDCODED/i, { type: "boolean" });
 
     // Proper
-    parser.addHandler("proper", /(?:REAL.)?PROPER/, { type: "boolean" });
+    parser.addHandler("proper", /(?:REAL.)?PROPER/i, { type: "boolean" });
 
     // Repack
-    parser.addHandler("repack", /REPACK|RERIP/, { type: "boolean" });
+    parser.addHandler("repack", /REPACK|RERIP/i, { type: "boolean" });
 
     // Retail
     parser.addHandler("retail", /\bRetail\b/i, { type: "boolean" });
