@@ -23,33 +23,26 @@
   "author": "Clément Escolano <clement.escolano@icloud.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "types": "index.d.ts",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "eslint": "^3.19.0",
-    "eslint-config-eslint": "^4.0.0",
-    "mocha": "^3.3.0"
+    "chai": "4.2.0",
+    "eslint": "5.16.0",
+    "eslint-config-eslint": "5.0.1",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "6.1.4",
+    "prettier": "1.18.2"
   },
   "eslintConfig": {
-    "extends": "eslint",
+    "extends": [
+      "plugin:prettier/recommended"
+    ],
     "env": {
       "es6": true,
       "mocha": true,
       "node": true
-    },
-    "rules": {
-      "comma-dangle": [
-        "error",
-        "only-multiline"
-      ],
-      "newline-after-var": "off",
-      "require-jsdoc": "off",
-      "strict": [
-        "error",
-        "never"
-      ]
     }
   }
 }

@@ -1,11 +1,12 @@
-const Parser = require("./src/parser").Parser;
-const handlers = require("./src/handlers");
+const Parser = require('./src/parser').Parser
+const handlers = require('./src/handlers')
 
-const defaultParser = new Parser();
+const defaultParser = new Parser()
 
-handlers.addDefaults(defaultParser);
+handlers.addDefaults(defaultParser)
 
-exports.addDefaults = handlers.addDefaults;
-exports.addHandler = (handlerName, handler, options) => defaultParser.addHandler(handlerName, handler, options);
-exports.parse = title => defaultParser.parse(title);
-exports.Parser = Parser;
+exports.addDefaults = handlers.addDefaults
+exports.addHandler = (handlerName, handler, options) =>
+	defaultParser.addHandler(handlerName, handler, options)
+exports.parse = title => defaultParser.parse(title)
+exports.Parser = Parser
