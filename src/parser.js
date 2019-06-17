@@ -75,11 +75,13 @@ function cleanTitle(rawTitle) {
 	let cleanedTitle = rawTitle
 
 	if (cleanedTitle.indexOf(' ') === -1 && cleanedTitle.indexOf('.') !== -1) {
-		cleanedTitle = cleanedTitle.replace(/\./g, ' ')
+		cleanedTitle = cleanedTitle.replace(/([\w]{2})(\.)/g, '$1 ')
 	}
 
-	cleanedTitle = cleanedTitle.replace(/_/g, ' ')
-	cleanedTitle = cleanedTitle.replace(/([(_]|- )$/, '').trim()
+	cleanedTitle = cleanedTitle
+		.replace(/_/g, ' ')
+		.replace(/([(_]|- )$/, '')
+		.trim()
 
 	return cleanedTitle
 }

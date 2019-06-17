@@ -150,4 +150,29 @@ describe('Random releases', () => {
 			title: 'JoJo no Kimyou na Bouken Ougon no Kaze'
 		})
 	})
+
+	it('[HorribleSubs] Boruto - Naruto Next Generations - 111 [720p].mkv', () => {
+		const releaseName = '[HorribleSubs] Boruto - Naruto Next Generations - 111 [720p].mkv'
+		expect(parse(releaseName)).to.deep.equal({
+			container: 'mkv',
+			episode: 111,
+			group: 'HorribleSubs',
+			resolution: '720p',
+			title: 'Boruto - Naruto Next Generations'
+		})
+	})
+
+	it('Marvels.Agents.of.S.H.I.E.L.D.S06E05.720p.HDTV.x264-AVS.mkv', () => {
+		const releaseName = 'Marvels.Agents.of.S.H.I.E.L.D.S06E05.720p.HDTV.x264-AVS.mkv'
+		expect(parse(releaseName)).to.deep.equal({
+			codec: 'x264',
+			container: 'mkv',
+			episode: 5,
+			group: 'AVS',
+			resolution: '720p',
+			season: 6,
+			source: 'hdtv',
+			title: 'Marvels Agents of S.H.I.E.L.D.'
+		})
+	})
 })
