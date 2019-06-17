@@ -172,7 +172,18 @@ describe('Random releases', () => {
 			resolution: '720p',
 			season: 6,
 			source: 'hdtv',
-			title: 'Marvels Agents of S.H.I.E.L.D.'
+			title: 'Marvels Agents of S H I E L D'
+		})
+	})
+
+	it('stephen.colbert.2019.02.03.conan.obrien.web.x264-cookiemonster.mkv', () => {
+		const releaseName = 'stephen.colbert.2019.02.03.conan.obrien.web.x264-cookiemonster.mkv'
+		expect(parse(releaseName)).to.deep.equal({
+			codec: 'x264',
+			container: 'mkv',
+			group: 'cookiemonster',
+			title: 'stephen colbert',
+			date: '2019-02-03'
 		})
 	})
 })

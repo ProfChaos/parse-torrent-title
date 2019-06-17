@@ -6,6 +6,13 @@ exports.addDefaults = /** @type Parser */ parser => {
 	// Resolution before being parsed as year
 	parser.addHandler('resolution', /[0-9]{3,4}x([0-9]{3,4})/i)
 
+	parser.addHandler('date', /[0-9]{4}.[0-9]{2}.[0-9]{2}/i)
+	parser.addHandler('date', ({ result }) => {
+		if (result.date) {
+			result.date = result.date.replace(/\./g, '-')
+		}
+	})
+
 	// Year
 	parser.addHandler('year', /(?!^)[([]?((?:19[0-9]|20[012])[0-9])[)\]]?/, {
 		type: 'integer'
