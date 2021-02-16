@@ -11,7 +11,8 @@ describe('Random releases', () => {
 			episode: 10,
 			source: 'bluray',
 			codec: 'x264',
-			group: 'GAnGSteR'
+			group: 'GAnGSteR',
+			type: 'tv'
 		})
 	})
 
@@ -22,7 +23,8 @@ describe('Random releases', () => {
 			unrated: true,
 			language: 'vostfr',
 			source: 'brrip',
-			codec: 'x264'
+			codec: 'x264',
+			type: 'movie'
 		})
 	})
 
@@ -30,7 +32,8 @@ describe('Random releases', () => {
 		const releaseName = 'Da Vinci Code DVDRip'
 		expect(parse(releaseName)).to.deep.equal({
 			title: 'Da Vinci Code',
-			source: 'dvdrip'
+			source: 'dvdrip',
+			type: 'movie'
 		})
 	})
 
@@ -39,7 +42,8 @@ describe('Random releases', () => {
 		expect(parse(releaseName)).to.deep.equal({
 			title: 'Some girls',
 			source: 'dvdrip',
-			year: 1998
+			year: 1998,
+			type: 'movie'
 		})
 	})
 
@@ -52,7 +56,8 @@ describe('Random releases', () => {
 			language: 'multi',
 			codec: 'x264',
 			audio: 'ac3',
-			group: 'gismo65'
+			group: 'gismo65',
+			type: 'movie'
 		})
 	})
 
@@ -64,7 +69,8 @@ describe('Random releases', () => {
 			remastered: true,
 			year: 1983,
 			codec: 'x264',
-			group: 'GHOULS'
+			group: 'GHOULS',
+			type: 'movie'
 		})
 	})
 
@@ -78,7 +84,8 @@ describe('Random releases', () => {
 			resolution: '720p',
 			codec: 'x264',
 			audio: 'ac3',
-			group: 'EVO'
+			group: 'EVO',
+			type: 'movie'
 		})
 	})
 
@@ -90,7 +97,8 @@ describe('Random releases', () => {
 			year: 2016,
 			resolution: '1080p',
 			codec: 'x264',
-			group: 'SPARKS'
+			group: 'SPARKS',
+			type: 'movie'
 		})
 	})
 
@@ -102,7 +110,8 @@ describe('Random releases', () => {
 			year: 2006,
 			language: 'multi',
 			region: 'R9',
-			group: 'TBW1973'
+			group: 'TBW1973',
+			type: 'movie'
 		})
 	})
 
@@ -116,7 +125,8 @@ describe('Random releases', () => {
 			resolution: '1080p',
 			language: 'vfi',
 			codec: 'x265',
-			group: 'HTG'
+			group: 'HTG',
+			type: 'movie'
 		})
 	})
 
@@ -128,11 +138,11 @@ describe('Random releases', () => {
 			audio: 'flac',
 			resolution: '1080',
 			container: 'mkv',
-
 			group: 'BlurayDesuYo',
 			season: 3,
 			episode: 38,
-			color_depth: '10-bit'
+			color_depth: '10-bit',
+			type: 'tv'
 		})
 	})
 
@@ -147,7 +157,8 @@ describe('Random releases', () => {
 			producer: 'BS',
 			group: 'Ohys-Raws',
 			resolution: '720',
-			title: 'JoJo no Kimyou na Bouken Ougon no Kaze'
+			title: 'JoJo no Kimyou na Bouken Ougon no Kaze',
+			type: 'tv'
 		})
 	})
 
@@ -158,7 +169,8 @@ describe('Random releases', () => {
 			episode: 111,
 			group: 'HorribleSubs',
 			resolution: '720p',
-			title: 'Boruto - Naruto Next Generations'
+			title: 'Boruto - Naruto Next Generations',
+			type: 'tv'
 		})
 	})
 
@@ -172,7 +184,8 @@ describe('Random releases', () => {
 			resolution: '720p',
 			season: 6,
 			source: 'hdtv',
-			title: 'Marvels Agents of S H I E L D'
+			title: 'Marvels Agents of S H I E L D',
+			type: 'tv'
 		})
 	})
 
@@ -183,7 +196,38 @@ describe('Random releases', () => {
 			container: 'mkv',
 			group: 'cookiemonster',
 			title: 'stephen colbert',
-			date: '2019-02-03'
+			date: '2019-02-03',
+			type: 'tv'
+		})
+	})
+
+	it('Star.Wars.Episode.IX.The.Rise.of.Skywalker.2019.2160p.WEB-DL.DDP5.1.Atmos.HEVC-BLUTONiUM.mkv', () => {
+		const releaseName =
+			'Star.Wars.Episode.IX.The.Rise.of.Skywalker.2019.2160p.WEB-DL.DDP5.1.Atmos.HEVC-BLUTONiUM.mkv'
+		expect(parse(releaseName)).to.deep.equal({
+			audio: 'atmos',
+			codec: 'hevc',
+			year: 2019,
+			container: 'mkv',
+			group: 'BLUTONiUM',
+			title: 'Star Wars Episode IX The Rise of Skywalker',
+			resolution: '4k',
+			source: 'web-dl',
+			type: 'movie'
+		})
+	})
+
+	it('Star.Wars.Episode.7.The.Force.Awakens.2015.1080p.BluRay.DTS.x264.D-Z0N3', () => {
+		const releaseName = 'Star.Wars.Episode.7.The.Force.Awakens.2015.1080p.BluRay.DTS.x264.D-Z0N3'
+		expect(parse(releaseName)).to.deep.equal({
+			audio: 'dts',
+			group: 'D-Z0N3',
+			resolution: '1080p',
+			source: 'bluray',
+			codec: 'x264',
+			title: 'Star Wars Episode 7 The Force Awakens',
+			type: 'movie',
+			year: 2015
 		})
 	})
 })

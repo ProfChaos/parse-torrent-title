@@ -8,8 +8,8 @@ exports.addDefaults = /** @type Parser */ parser => {
 
 	parser.addHandler('date', /[0-9]{4}.[0-9]{2}.[0-9]{2}/i)
 	parser.addHandler('date', ({ result }) => {
-		if (result.date) {
-			result.date = result.date.replace(/\./g, '-')
+		if (result.date && result.date.value) {
+			result.date.value = result.date.value.replace(/\./g, '-')
 		}
 	})
 
@@ -19,8 +19,9 @@ exports.addDefaults = /** @type Parser */ parser => {
 	})
 
 	// Resolution
+	parser.addHandler('resolution', /(4k|2160p)/i, { value: '4k' })
+	parser.addHandler('resolution', /(8k|4320p)/i, { value: '8k' })
 	parser.addHandler('resolution', /([0-9]{3,4}[pi])/i, { type: 'lowercase' })
-	parser.addHandler('resolution', /(4k)/i, { type: 'lowercase' })
 
 	// Extended
 	parser.addHandler('extended', /EXTENDED/i, { type: 'boolean' })
@@ -81,8 +82,8 @@ exports.addDefaults = /** @type Parser */ parser => {
 		type: 'lowercase'
 	})
 	parser.addHandler('codec', ({ result }) => {
-		if (result.codec) {
-			result.codec = result.codec.replace(/[ .-]/, '')
+		if (result.codec && result.codec.value) {
+			result.codec.value = result.codec.value.replace(/[ .-]/, '')
 		}
 	})
 
@@ -101,8 +102,8 @@ exports.addDefaults = /** @type Parser */ parser => {
 	parser.addHandler('group', /^(\w+)-/)
 	parser.addHandler('group', /^(\[([^\]]+)\])/i)
 	parser.addHandler('group', ({ result }) => {
-		if (result.group) {
-			result.group = result.group.replace(/(^\[|\]$)/g, '')
+		if (result.group && result.group.value) {
+			result.group.value = result.group.value.replace(/(^\[|\]$)/g, '')
 		}
 	})
 

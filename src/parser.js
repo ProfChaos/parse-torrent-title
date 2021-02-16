@@ -50,7 +50,10 @@ function createHandlerFromRegExp(name, regExp, options) {
 				return null
 			}
 
-			result[name] = value
+			result[name] = {
+				value,
+				startIndex: match.index
+			}
 
 			taken.push({
 				start: match.index,
@@ -114,7 +117,7 @@ class Parser {
 	}
 
 	parse(title) {
-		const result = {}
+		const result = {title:{},type:{}}
 		const taken = []
 		let endOfTitle = title.length
 		let startOfTitle = 0
@@ -133,9 +136,26 @@ class Parser {
 			}
 		}
 
-		result.title = cleanTitle(title.substr(startOfTitle, endOfTitle - startOfTitle))
+		if (result.episode && result.year && result.year.startIndex > result.episode.startIndex) {
+			delete result.episode
+			endOfTitle = result.year.startIndex
+		}
 
-		return result
+		result.title.value = cleanTitle(title.substr(startOfTitle, endOfTitle - startOfTitle))
+
+		if (!result.season && !result.episode && !result.date) {
+			result.type.value = 'movie'
+		}
+
+		if (result.season || result.episode || result.date) {
+			result.type.value = 'tv'
+		}
+
+		if (!result.type.value) {
+			delete result.type
+		}
+
+		return Object.keys(result).reduce((prev, key) => ({...prev, [key]:result[key].value}),{})
 	}
 }
 

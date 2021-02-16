@@ -8,6 +8,7 @@ declare namespace ParseTorrentTitle {
 
     interface ParserResult {
         title: string;
+        type?: 'tv' | 'movie';
         year?: number;
         resolution?: string;
         extended?: boolean;
@@ -59,8 +60,8 @@ declare namespace ParseTorrentTitle {
 }
 
 declare module "parse-torrent-title" {
-
     export class Parser extends ParseTorrentTitle.Parser { }
+    export const ParserResult: ParseTorrentTitle.ParserResult;
     export const parse: ParseTorrentTitle.ParseFunction;
     export const addHandler: ParseTorrentTitle.AddHandlerFunction;
     export const addDefaults: ParseTorrentTitle.AddDefaultsFunction;
