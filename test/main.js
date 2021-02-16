@@ -230,4 +230,21 @@ describe('Random releases', () => {
 			year: 2015
 		})
 	})
+
+	it('Last.Week.Tonight.with.John.Oliver.S08E01.February.14.2021.720p.HMAX.WEB-DL.DD2.0.H.264-null.mkv', () => {
+		const releaseName =
+			'Last.Week.Tonight.with.John.Oliver.S08E01.February.14.2021.720p.HMAX.WEB-DL.DD2.0.H.264-null.mkv'
+		expect(parse(releaseName)).to.deep.equal({
+			codec: 'h264',
+			container: 'mkv',
+			group: 'null',
+			resolution: '720p',
+			episode: 1,
+			season: 8,
+			source: 'web-dl',
+			title: 'Last Week Tonight with John Oliver',
+			type: 'tv',
+			year: 2021
+		})
+	})
 })

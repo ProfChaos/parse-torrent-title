@@ -136,7 +136,7 @@ class Parser {
 			}
 		}
 
-		if (result.episode && result.year && result.year.startIndex > result.episode.startIndex) {
+		if (!(result.episode && result.season) && result.episode && result.year && result.year.startIndex > result.episode.startIndex) {
 			delete result.episode
 			endOfTitle = result.year.startIndex
 		}
